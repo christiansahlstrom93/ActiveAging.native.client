@@ -5,4 +5,4 @@ tabhost i våran viewpager. Denna hittar ni i paketet "MainInitializor under kla
 
 1. När det gäller branches så har jag lagt upp två stycken. En heter Develop och den andra heter activeaging/first. Den sistnämnda
 får enbart mergas till när vi är 100% att koden är ren. Develop branchen är för utvecklingsändamål och kan därför mergas till. Men
-även den måste vara ren och alltid hållas redo för release så att säga. Kram, christer.
+även den måste vara ren och alltid hållas redo för release så att säga. Kram, christer. 
