@@ -1,0 +1,5 @@
+
+Här kan vi ju skriva ner dokumentation osv om hur vissa saker fungerar etc etc om någon får för sig att lägga in nya libraries
+eller liknande..
+Jag kan ju ta oskulden och berätta att jag har lagt till MaterialTabListeners för att vi ska få en väl fungerande och snygg
+tabhost i våran viewpager. Denna hittar ni i paketet "MainInitializor under klassen "MyPagerAdapter" samt i Splash klassen.
