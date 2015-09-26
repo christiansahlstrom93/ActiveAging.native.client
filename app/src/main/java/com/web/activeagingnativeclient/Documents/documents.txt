@@ -1,5 +1,8 @@
-
 Här kan vi ju skriva ner dokumentation osv om hur vissa saker fungerar etc etc om någon får för sig att lägga in nya libraries
 eller liknande..
 Jag kan ju ta oskulden och berätta att jag har lagt till MaterialTabListeners för att vi ska få en väl fungerande och snygg
 tabhost i våran viewpager. Denna hittar ni i paketet "MainInitializor under klassen "MyPagerAdapter" samt i Splash klassen.
+
+1. När det gäller branches så har jag lagt upp två stycken. En heter Develop och den andra heter activeaging/first. Den sistnämnda
+får enbart mergas till när vi är 100% att koden är ren. Develop branchen är för utvecklingsändamål och kan därför mergas till. Men
+även den måste vara ren och alltid hållas redo för release så att säga. Kram, christer. 
