@@ -5,5 +5,6 @@ package com.web.activeagingnativeclient.Constants;
  */
 public class PublicConstants {
     public static final String PUBLIC_KEY = "publib";
+    public static final String ERROR_MESSAGE = "ERROR";
     public static final String TAG = "loggtag";
 }
