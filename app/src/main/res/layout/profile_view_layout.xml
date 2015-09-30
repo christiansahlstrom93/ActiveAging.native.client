@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_above="@+id/LinearLayout02"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/historyButton"
+
+            android:layout_weight="1"
+            android:text="Historik"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:background="@drawable/buttonshape"
+            android:textAllCaps="false">
+        </Button>
+
+        <Button
+            android:id="@+id/settingsButton"
+            android:layout_weight="1"
+            android:text="Inställningar"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:background="@drawable/buttonshape"
+            android:textAllCaps="false">
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/balanceButton"
+            android:layout_weight="1"
+            android:text="Saldo"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:background="@drawable/buttonshape"
+            android:textAllCaps="false">
+        </Button>
+
+        <Button
+            android:id="@+id/otherButton"
+            android:layout_weight="1"
+            android:text="Övrigt"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:background="@drawable/buttonshape"
+            android:textAllCaps="false">
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anders Nilsson"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:id="@+id/textViewName" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vasagatan 16 B"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:id="@+id/textViewStreet" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="291 33 Kristianstad"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:id="@+id/textViewZipCity" />
+    </LinearLayout>
+
+
+</RelativeLayout>

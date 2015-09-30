@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.web.activeagingnativeclient.Fragments.ShopView;
+import com.web.activeagingnativeclient.Fragments.ProfileView;
 import com.web.activeagingnativeclient.Resources.ResourcesHelper;
 
 /**
@@ -32,7 +33,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             //TODO här ska fyra olika fragments in
             switch (position) {
                 case 0:
-                    return new ShopView();
+                    return new ProfileView();
                 case 1:
                     return new ShopView();
                 case 2:
