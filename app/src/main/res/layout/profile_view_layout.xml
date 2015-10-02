@@ -79,24 +79,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anders Nilsson"
+            android:text="Name"
             android:textSize="20dp"
             android:textColor="#000000"
             android:id="@+id/textViewName" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vasagatan 16 B"
+            android:text="Address"
             android:textSize="20dp"
             android:textColor="#000000"
             android:id="@+id/textViewStreet" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="291 33 Kristianstad"
+            android:text="Zip code"
             android:textSize="20dp"
             android:textColor="#000000"
-            android:id="@+id/textViewZipCity" />
+            android:id="@+id/textViewZip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:id="@+id/textViewCity" />
     </LinearLayout>
 
 
