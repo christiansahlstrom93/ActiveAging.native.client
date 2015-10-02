@@ -12,7 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.web.activeagingnativeclient.Constants.PublicConstants;
-import com.web.activeagingnativeclient.MainInitializor.MyPagerAdapter;
+import com.web.activeagingnativeclient.Adapters.PagerAdapter;
+import com.web.activeagingnativeclient.Fragments.ShopView;
 import com.web.activeagingnativeclient.Resources.ResourcesHelper;
 import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
 
@@ -20,6 +21,9 @@ import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
+/**
+ * Created by Christian on 2015-09-26.
+ */
 public class Splash extends AppCompatActivity implements MaterialTabListener {
 
     private static Splash instance;
@@ -29,7 +33,7 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
     private ResourcesHelper resourcesHelper = new ResourcesHelper();
     private TextView actionBarText;
     private ProgressBar progressBar;
-    private MyPagerAdapter pagerAdapter;
+    private PagerAdapter pagerAdapter;
     MaterialTabHost tabHost;
 
 
@@ -62,7 +66,7 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
         tabHost = (MaterialTabHost) this.findViewById(R.id.materialTabHost);
         pager = (ViewPager) this.findViewById(R.id.pager);
 
-        pagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), getApplicationContext());
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getApplicationContext());
         pager.setAdapter(pagerAdapter);
         pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -86,7 +90,7 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
             bar.setDisplayShowCustomEnabled(true);
             bar.setDisplayShowTitleEnabled(false);
             bar.setIcon(getResources().getDrawable(resourcesHelper.getImagedrawablesForIndex(0)));
-            bar.setBackgroundDrawable(new ColorDrawable(Color.rgb(21, 161, 100))); //TODO ändra färg
+            bar.setBackgroundDrawable(new ColorDrawable(Color.rgb(21, 161, 100)));
 
             LayoutInflater inflator = LayoutInflater.from(this);
             View v = inflator.inflate(R.layout.titleview, null);

@@ -1,4 +1,4 @@
-package com.web.activeagingnativeclient.MainInitializor;
+package com.web.activeagingnativeclient.Adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.web.activeagingnativeclient.Fragments.HistoryView;
+import com.web.activeagingnativeclient.Fragments.SettingsView;
 import com.web.activeagingnativeclient.Fragments.ShopView;
 import com.web.activeagingnativeclient.Fragments.ProfileView;
 import com.web.activeagingnativeclient.Resources.ResourcesHelper;
@@ -13,14 +15,14 @@ import com.web.activeagingnativeclient.Resources.ResourcesHelper;
 /**
  * Created by Christian on 2015-09-26.
  */
-public class MyPagerAdapter extends FragmentPagerAdapter {
+public class PagerAdapter extends FragmentPagerAdapter {
 
     private ResourcesHelper resourcesHelper = new ResourcesHelper();
 
     static int[] icons;
     Context c;
 
-    public MyPagerAdapter(FragmentManager fm, Context v) {
+    public PagerAdapter(FragmentManager fm, Context v) {
         super(fm);
         this.c = v;
         icons = new int[]{resourcesHelper.getImagedrawablesForIndex(0), resourcesHelper.getImagedrawablesForIndex(1), resourcesHelper.getImagedrawablesForIndex(2), resourcesHelper.getImagedrawablesForIndex(3)};
@@ -35,11 +37,12 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                 case 0:
                     return new ProfileView();
                 case 1:
-                    return new ShopView();
+                    ShopView.getInstance().startTask();
+                    return ShopView.getInstance();
                 case 2:
-                    return new ShopView();
+                    return new HistoryView();
                 case 3:
-                    return new ShopView();
+                    return new SettingsView();
 
                 default:
                     break;

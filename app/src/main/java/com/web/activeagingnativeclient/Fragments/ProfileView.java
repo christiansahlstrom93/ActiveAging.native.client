@@ -29,7 +29,7 @@ public class ProfileView extends Fragment {
         if (getV() == null) {
             setV(inflater.inflate(R.layout.profile_view_layout, container, false));
 
-            mp = MediaPlayer.create(getContext(), R.raw.click);
+            //mp = MediaPlayer.create(getContext(), R.raw.click);
 
             final Animation alpha = AnimationUtils.loadAnimation(getContext(), R.anim.alphastyle);
 
