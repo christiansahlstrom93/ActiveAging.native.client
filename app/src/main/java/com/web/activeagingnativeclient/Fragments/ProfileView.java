@@ -10,9 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
 import com.web.activeagingnativeclient.R;
+import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
 
 /**
  * Created by Admir on 2015-09-27.
@@ -22,6 +22,15 @@ public class ProfileView extends Fragment {
     private static View v;
     MediaPlayer mp;
 
+    String inputName;
+    String inputStreet;
+    int inputZip;
+    String inputCity;
+
+    TextView name;
+    TextView street;
+    TextView zip;
+    TextView city;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,11 +42,12 @@ public class ProfileView extends Fragment {
 
             final Animation alpha = AnimationUtils.loadAnimation(getContext(), R.anim.alphastyle);
 
-            //TODO: Fixa så att namn, adress och ort visas automatiskt efter att de hämtars ur databasen.
+            name = (TextView) v.findViewById(R.id.textViewName);
+            street = (TextView) v.findViewById(R.id.textViewStreet);
+            zip = (TextView) v.findViewById(R.id.textViewZip);
+            city = (TextView) v.findViewById(R.id.textViewCity);
 
-            TextView name = (TextView) v.findViewById(R.id.textViewName);
-            TextView street = (TextView) v.findViewById(R.id.textViewStreet);
-            TextView zipCity = (TextView) v.findViewById(R.id.textViewZipCity);
+            //inputData();
 
             final Button historyB = (Button) v.findViewById(R.id.historyButton);
             Button settingsB = (Button) v.findViewById(R.id.settingsButton);
@@ -71,8 +81,11 @@ public class ProfileView extends Fragment {
                     v.startAnimation(alpha);
                 }
             });
+
+
         }
         return getV();
+
     }
 
 
@@ -84,4 +97,17 @@ public class ProfileView extends Fragment {
         this.v = v;
     }
 
+    public void inputData() {
+
+
+        inputName = SharedPreferenceHandler.getPublicLibValue(getActivity(),"userName");
+        inputStreet = SharedPreferenceHandler.getPublicLibValue(getActivity(), "userStreet");
+        inputZip = SharedPreferenceHandler.getPublicLibValue(getActivity(), "userZip", -1);
+        inputCity = SharedPreferenceHandler.getPublicLibValue(getActivity(), "userCity");
+
+        name.setText(inputName);
+        street.setText(inputStreet);
+        zip.setText(inputZip);
+        city.setText(inputCity);
+    }
 }
