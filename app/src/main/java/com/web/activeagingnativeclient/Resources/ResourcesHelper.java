@@ -7,7 +7,8 @@ import com.web.activeagingnativeclient.R;
  */
 public class ResourcesHelper {
     //TODO lägg in andra ikoner för tabbar och andra ändamål
-    private int[] imagedrawables = {R.drawable.left_arrow,R.drawable.left_arrow,R.drawable.left_arrow,R.drawable.left_arrow};
+    private int[] imagedrawables = {R.mipmap.ic_perm_identity_white_24dp,R.mipmap.ic_shopping_cart_white_24dp,
+            R.mipmap.ic_build_white_24dp,R.mipmap.ic_subject_white_24dp};
 
     public int getImagedrawablesForIndex(int index) {
         return getImagedrawables()[index];

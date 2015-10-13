@@ -27,6 +27,7 @@ public class TaskHelper {
                 ShopView.getInstance().setImageUrl(shopItems.getImageUrl());
                 ShopView.getInstance().setPrice(shopItems.getPrice());
                 ShopView.getInstance().setTitle(shopItems.getTitle());
+                ShopView.getInstance().setItemID(shopItems.getItemID());
 
                 return null;
             }
