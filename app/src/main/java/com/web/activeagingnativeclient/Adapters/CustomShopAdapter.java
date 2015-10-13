@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.web.activeagingnativeclient.CommonHelpers.URLConvertion;
 import com.web.activeagingnativeclient.Constants.PublicConstants;
@@ -57,14 +58,15 @@ public class CustomShopAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.listview_row,null);
         }
 
-        ShopHelper shopHelper = this.shopHelperList.get(position);
+        final ShopHelper shopHelper = this.shopHelperList.get(position);
         TextView description, title, price;
-        ImageView imageView;
+        ImageView imageView, infoIcon;
 
         description = (TextView) convertView.findViewById(R.id.description);
         title= (TextView) convertView.findViewById(R.id.title);
         price = (TextView) convertView.findViewById(R.id.price);
         imageView = (ImageView) convertView.findViewById(R.id.thumbnail);
+        infoIcon = (ImageView) convertView.findViewById(R.id.infoImage);
 
         description.setText(shopHelper.getDescription());
         title.setText(shopHelper.getTitle());
@@ -74,6 +76,14 @@ public class CustomShopAdapter extends BaseAdapter {
         } catch (Exception e) {
             Log.e(PublicConstants.TAG,"Error i CSA " + e);
         }
+
+        infoIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO Öppna en ny description ruta
+                Toast.makeText(activity,shopHelper.getDescription(),Toast.LENGTH_LONG).show();
+            }
+        });
 
         return convertView;
     }

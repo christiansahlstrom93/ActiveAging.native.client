@@ -25,7 +25,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public PagerAdapter(FragmentManager fm, Context v) {
         super(fm);
         this.c = v;
-        icons = new int[]{resourcesHelper.getImagedrawablesForIndex(0), resourcesHelper.getImagedrawablesForIndex(1), resourcesHelper.getImagedrawablesForIndex(2), resourcesHelper.getImagedrawablesForIndex(3)};
+        icons = new int[]{resourcesHelper.getImagedrawablesForIndex(0), resourcesHelper.getImagedrawablesForIndex(1), resourcesHelper.getImagedrawablesForIndex(3), resourcesHelper.getImagedrawablesForIndex(2)};
     }
 
     @Override

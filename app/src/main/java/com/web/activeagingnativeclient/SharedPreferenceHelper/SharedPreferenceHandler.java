@@ -13,7 +13,7 @@ public class SharedPreferenceHandler {
     public static String getPublicLibValue(Context context,String subKey) {
         SharedPreferences prefs = context.getSharedPreferences(
                 PublicConstants.PUBLIC_KEY, Context.MODE_PRIVATE);
-        return prefs.getString(subKey, null);
+        return prefs.getString(subKey, "Nisse Olofsson");//TODO ta bort namnet
     }
 
     public static int getPublicLibValue(Context context,String subKey,int defaultValue) {
