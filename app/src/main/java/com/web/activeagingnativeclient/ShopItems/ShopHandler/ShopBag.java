@@ -39,4 +39,23 @@ public abstract class ShopBag {
         return itemID;
     }
 
+    public abstract void clearLists();
+
+    public abstract void clearListForIndex(int position);
+
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    public void setImageUrl(List<String> imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setPrice(List<Float> price) {
+        this.price = price;
+    }
+
+    public void setItemID(List<Float> itemID) {
+        this.itemID = itemID;
+    }
 }

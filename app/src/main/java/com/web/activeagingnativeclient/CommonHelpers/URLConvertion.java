@@ -3,7 +3,9 @@ package com.web.activeagingnativeclient.CommonHelpers;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.web.activeagingnativeclient.Fragments.ShopView;
 
@@ -19,7 +21,7 @@ public class URLConvertion {
 
     private Bitmap bitmap;
 
-    public void handleBitmapUrl(final ImageView imageView, final String mUrl) {
+    public void handleBitmapUrl(final ImageView imageView, final String mUrl, final ProgressBar pb) {
         new AsyncTask<Void, Void, Void>() {
 
             @Override
@@ -48,6 +50,7 @@ public class URLConvertion {
 
                 if (bitmap != null) {
                     imageView.setImageBitmap(bitmap);
+                    pb.setVisibility(View.INVISIBLE);
                 }
             }
         }.execute();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="6dp"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,7 +8,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/thumbnail"
-        android:src="@mipmap/ic_launcher" />
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,6 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Lite information om maträtten osv..."
         android:id="@+id/description"
+        android:layout_marginLeft="7dp"
         android:layout_below="@+id/title"
         android:layout_toRightOf="@+id/thumbnail"
         android:layout_toEndOf="@+id/thumbnail" />
@@ -43,7 +48,30 @@
         android:layout_height="30dp"
         android:id="@+id/infoImage"
         android:layout_alignBottom="@+id/thumbnail"
-        android:src="@mipmap/ic_info_outline_black_24dp"
+        android:src="@android:drawable/ic_delete"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
+        android:layout_below="@+id/description"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/clickText"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:layout_alignBottom="@+id/infoImage"
+        android:layout_toLeftOf="@+id/infoImage"
+        android:layout_toStartOf="@+id/infoImage"
+        android:layout_alignTop="@+id/infoImage" />
 </RelativeLayout>

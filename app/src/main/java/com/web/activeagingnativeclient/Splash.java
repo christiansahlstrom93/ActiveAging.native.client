@@ -1,21 +1,25 @@
 package com.web.activeagingnativeclient;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.web.activeagingnativeclient.Constants.PublicConstants;
 import com.web.activeagingnativeclient.Adapters.PagerAdapter;
-import com.web.activeagingnativeclient.Fragments.ShopView;
+import com.web.activeagingnativeclient.Constants.PublicConstants;
 import com.web.activeagingnativeclient.Resources.ResourcesHelper;
 import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
+import com.web.activeagingnativeclient.ShopItems.Confirmation.ConfirmationActivity;
+import com.web.activeagingnativeclient.ShopItems.ShopHandler.ShopBagHelper;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -32,6 +36,8 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
 
     private ResourcesHelper resourcesHelper = new ResourcesHelper();
     private TextView actionBarText;
+    private TextView chartCounter;
+    public ImageView shopChart;
     private ProgressBar progressBar;
     private PagerAdapter pagerAdapter;
     MaterialTabHost tabHost;
@@ -42,19 +48,19 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (SharedPreferenceHandler.getPublicLibValue(this,"username") == null) {
-           //TODO starta LOG IN sidan
+        if (SharedPreferenceHandler.getPublicLibValue(this, "username") == null) {
+            //TODO starta LOG IN sidan
         }
 
         instance = getInstance();
         try {
             initTabs();
         } catch (Exception e) {
-            Log.e(PublicConstants.TAG,"ERROR I INITABS " + e);
+            Log.e(PublicConstants.TAG, "ERROR I INITABS " + e);
         }
     }
 
-    public Splash getInstance() {
+    public static Splash getInstance() {
         if (instance == null) {
             instance = new Splash();
         }
@@ -95,11 +101,32 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
             LayoutInflater inflator = LayoutInflater.from(this);
             View v = inflator.inflate(R.layout.titleview, null);
             setActionBarText((TextView) v.findViewById(R.id.title));
+            getInstance().setChartCounter((TextView) v.findViewById(R.id.chartCounter));
             getInstance().setActionBarText(getActionBarText());
             getActionBarText().setText(SharedPreferenceHandler.getPublicLibValue(this, "username"));
             progressBar = (ProgressBar) v.findViewById(R.id.tabProgressBar);
             progressBar.setVisibility(View.INVISIBLE); //TODO ta bort
+            shopChart = (ImageView) v.findViewById(R.id.imageView);
+            shopChart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    confirmationStage();
+                }
+            });
+
+            if (ShopBagHelper.getInstance().getItemID().size() < 1) {
+                getInstance().getChartCounter().setVisibility(View.INVISIBLE);
+            }
             bar.setCustomView(v);
+        }
+    }
+
+    private void confirmationStage() {
+        if (ShopBagHelper.getInstance().getItemID().size() < 1) {
+            Toast.makeText(getApplicationContext(), "Du har inte valt något att beställa", Toast.LENGTH_LONG).show();
+            pager.setCurrentItem(1);
+        } else {
+            startActivity(new Intent(this, ConfirmationActivity.class));
         }
     }
 
@@ -118,11 +145,30 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ShopBagHelper.getInstance().getItemID().size() >= 1) {
+            Splash.getInstance().getChartCounter().setVisibility(View.VISIBLE);
+            Splash.getInstance().getChartCounter().setText(""+ShopBagHelper.getInstance().getItemID().size());
+        } else {
+            Splash.getInstance().getChartCounter().setVisibility(View.INVISIBLE);
+        }
+    }
+
     public TextView getActionBarText() {
         return actionBarText;
     }
 
     public void setActionBarText(TextView actionBarText) {
         this.actionBarText = actionBarText;
+    }
+
+    public TextView getChartCounter() {
+        return chartCounter;
+    }
+
+    public void setChartCounter(TextView chartCounter) {
+        this.chartCounter = chartCounter;
     }
 }
