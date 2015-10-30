@@ -27,11 +27,24 @@
         android:layout_toStartOf="@+id/imageView" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@mipmap/ic_shopping_cart_white_24dp"
         android:id="@+id/imageView"
-        android:layout_alignBottom="@+id/tabProgressBar"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"  />
+
+    <TextView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="1"
+        android:textColor="@android:color/background_light"
+        android:gravity="center"
+        android:id="@+id/chartCounter"
+        android:background="@drawable/round_text"
+        android:layout_alignTop="@+id/title"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
