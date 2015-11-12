@@ -6,3 +6,12 @@ tabhost i våran viewpager. Denna hittar ni i paketet "MainInitializor under kla
 1. När det gäller branches så har jag lagt upp två stycken. En heter Develop och den andra heter activeaging/first. Den sistnämnda
 får enbart mergas till när vi är 100% att koden är ren. Develop branchen är för utvecklingsändamål och kan därför mergas till. Men
 även den måste vara ren och alltid hållas redo för release så att säga. Kram, christer.
+
+2. Jag har fixat startsidan men tänkte fylla ut det där vita mot något annat. Klockan vi tänkte ha blir inte så snygg där, vi måste komma på något
+bättre! Fast om ni vill ha den ändå så har vi det. Ska fixa inställningar nu! Kom också på att jag inte lagt in "Handla" bland knapparna, men byter
+ut övrigt mot det bara, enkelt gjort men känns onödigt nu när vi inte riktigt är 100 på vilka knappar vi måste ha. Kram Björn.
+
+3. Hej, Björn här igen. Har nu fixat med knapparna med för Settings.. Lägger in ett nytt fragment i ett redan befintligt. Det
+funkar som jag vill, men det ser inte så snyggt ut just nu. Vi får tillsammns komma överensom hur det ska se ut och så gör jag det
+bara. Har slut på fantasi och kreativitet just nu bara. Jag älskar er båda. Kram Björn, eller som vi inom grabbgänget brukar säga "T-Björn"
+som i T-röd HA HA HA HA HA HA............ :( Inte kul. Alls.

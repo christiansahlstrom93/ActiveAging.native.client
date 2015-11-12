@@ -2,6 +2,7 @@ package com.web.activeagingnativeclient.Fragments;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.web.activeagingnativeclient.R;
 import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
+import com.web.activeagingnativeclient.Splash;
 
 /**
  * Created by Admir on 2015-09-27.
@@ -38,8 +41,6 @@ public class ProfileView extends Fragment {
         if (getV() == null) {
             setV(inflater.inflate(R.layout.profile_view_layout, container, false));
 
-            //mp = MediaPlayer.create(getContext(), R.raw.click);
-
             final Animation alpha = AnimationUtils.loadAnimation(getContext(), R.anim.alphastyle);
 
             name = (TextView) v.findViewById(R.id.textViewName);
@@ -49,14 +50,40 @@ public class ProfileView extends Fragment {
 
             //inputData();
 
-            final Button historyB = (Button) v.findViewById(R.id.historyButton);
+            Button startB = (Button) v.findViewById(R.id.startButton);
+            Button shopB = (Button) v.findViewById(R.id.shopButton);
+            Button historyB = (Button) v.findViewById(R.id.historyButton);
             Button settingsB = (Button) v.findViewById(R.id.settingsButton);
-            Button balanceB = (Button) v.findViewById(R.id.balanceButton);
-            Button otherB = (Button) v.findViewById(R.id.otherButton);
+
+            startB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mp = MediaPlayer.create(getContext(), R.raw.click);
+                    mp.start();
+                    Toast.makeText(getContext(), "Start!", Toast.LENGTH_LONG).show();
+                    v.startAnimation(alpha);
+
+                    //Splash.getInstance().pager.setCurrentItem(2);
+                }
+            });
+
+            shopB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mp = MediaPlayer.create(getContext(), R.raw.click);
+                    mp.start();
+                    Toast.makeText(getContext(), "Beställa!", Toast.LENGTH_LONG).show();
+                    v.startAnimation(alpha);
+
+                }
+            });
 
             historyB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mp = MediaPlayer.create(getContext(), R.raw.click);
+                    mp.start();
+                    Toast.makeText(getContext(), "Historik!", Toast.LENGTH_LONG).show();
                     v.startAnimation(alpha);
                 }
             });
@@ -64,30 +91,15 @@ public class ProfileView extends Fragment {
             settingsB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mp = MediaPlayer.create(getContext(), R.raw.click);
+                    mp.start();
+                    Toast.makeText(getContext(), "Inställningar!", Toast.LENGTH_LONG).show();
                     v.startAnimation(alpha);
                 }
             });
-
-            balanceB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.startAnimation(alpha);
-                }
-            });
-
-            otherB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.startAnimation(alpha);
-                }
-            });
-
-
         }
         return getV();
-
     }
-
 
     public View getV() {
         return v;
@@ -98,8 +110,6 @@ public class ProfileView extends Fragment {
     }
 
     public void inputData() {
-
-
         inputName = SharedPreferenceHandler.getPublicLibValue(getActivity(),"userName");
         inputStreet = SharedPreferenceHandler.getPublicLibValue(getActivity(), "userStreet");
         inputZip = SharedPreferenceHandler.getPublicLibValue(getActivity(), "userZip", -1);
