@@ -1,5 +1,7 @@
 package com.web.activeagingnativeclient.Server;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,29 +15,31 @@ public class ShopItems extends ServerHandler {
     private List<String> imageUrl = new ArrayList<>();
 
     private List<Float> price = new ArrayList<>();
-    private List<Float> itemID = new ArrayList<>();
+    private List<Integer> itemID = new ArrayList<>();
 
-    public void fetchShopInformation(String query) {
+    private List<Integer> manufacturerID = new ArrayList<>();
 
-        getTitle().add("Burgare");
-        getTitle().add("Husmanskost");
-        getTitle().add("Köttbullar");
+    public void getManufactures() throws JSONException {
+        setProductId(getResponseBody("https://activeageing.se/resources/manufacturers"),manufacturerID);
+    }
 
-        getDescription().add("Fruktansvärt god");
-        getDescription().add("Husmanskost i sin bästa version");
-        getDescription().add("Köttbullar och annat smarrigt...");
+    public void getProducts() throws JSONException {
+        for (int i = 0; i < manufacturerID.size(); i++) {
+            String url = "https://activeageing.se/resources/manufacturers/"+manufacturerID.get(i)+"/products";
+            setProductCredentials(getResponseBody(url),getTitle(),getDescription(),getPrice(),getItemID());
+        }
+    }
 
-        getPrice().add((float) 100);
-        getPrice().add((float) 200);
-        getPrice().add((float) 900);
 
-        getItemID().add((float) 0);
-        getItemID().add((float) 1);
-        getItemID().add((float) 2);
+    public void getImage() throws JSONException {
 
-        getImageUrl().add("http://www.mcdonalds.ie/content/iehome/food/_jcr_content/genericpagecontent/everything/image.img.jpg/1381846764459.jpg");
-        getImageUrl().add("http://www.swedishprepper.com/wp-content/uploads/2012/05/kottbullar-med-potatis.jpg");
-        getImageUrl().add("http://cdn.jennysmatblogg.nu/wp-content/uploads/2014/01/IMG_9181.jpg");
+        for (int i = 0; i < manufacturerID.size(); i++) {
+            for (int j = 0; j < getItemID().size(); j ++) {
+                String url = "https://activeageing.se/resources/manufacturers/" + manufacturerID.get(i)+"/products/"+getItemID().get(j)+
+                        "/media ";
+                setProductImageURL(getResponseBody(url),getImageUrl());
+            }
+        }
     }
 
     public List<String> getTitle() {
@@ -54,7 +58,7 @@ public class ShopItems extends ServerHandler {
         return price;
     }
 
-    public List<Float> getItemID() {
+    public List<Integer> getItemID() {
         return itemID;
     }
 }
