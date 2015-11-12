@@ -77,7 +77,7 @@ public abstract class ServerHandler {
                 imageURL.add(jsonObject.getString("url"));
             }
         } else {
-            imageURL.add("http://i1.cdn2b.image.pornhub.phncdn.com/m=e-yaaGqaa/pics/albums/000/821/151/10340891/original_10340891.jpg");
+            imageURL.add("");
         }
     }
 
