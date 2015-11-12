@@ -23,7 +23,6 @@ import com.web.activeagingnativeclient.Splash;
 
 public class ProfileView extends Fragment {
     private static View v;
-    MediaPlayer mp;
 
     String inputName;
     String inputStreet;
@@ -58,21 +57,17 @@ public class ProfileView extends Fragment {
             startB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp = MediaPlayer.create(getContext(), R.raw.click);
-                    mp.start();
-                    Toast.makeText(getContext(), "Start!", Toast.LENGTH_LONG).show();
                     v.startAnimation(alpha);
 
-                    //Splash.getInstance().pager.setCurrentItem(2);
+                    Splash.pager.setCurrentItem(2);
                 }
             });
 
             shopB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp = MediaPlayer.create(getContext(), R.raw.click);
-                    mp.start();
-                    Toast.makeText(getContext(), "Beställa!", Toast.LENGTH_LONG).show();
+
+                    Splash.pager.setCurrentItem(1);
                     v.startAnimation(alpha);
 
                 }
@@ -81,9 +76,8 @@ public class ProfileView extends Fragment {
             historyB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp = MediaPlayer.create(getContext(), R.raw.click);
-                    mp.start();
-                    Toast.makeText(getContext(), "Historik!", Toast.LENGTH_LONG).show();
+
+                    Splash.pager.setCurrentItem(2);
                     v.startAnimation(alpha);
                 }
             });
@@ -91,9 +85,7 @@ public class ProfileView extends Fragment {
             settingsB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp = MediaPlayer.create(getContext(), R.raw.click);
-                    mp.start();
-                    Toast.makeText(getContext(), "Inställningar!", Toast.LENGTH_LONG).show();
+                    Splash.pager.setCurrentItem(3);
                     v.startAnimation(alpha);
                 }
             });

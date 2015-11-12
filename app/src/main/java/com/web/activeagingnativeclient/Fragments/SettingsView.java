@@ -24,7 +24,6 @@ public class SettingsView extends Fragment {
 
     private View v;
 
-    MediaPlayer mp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,8 +38,7 @@ public class SettingsView extends Fragment {
             usernamepasswordVar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp = MediaPlayer.create(getContext(), R.raw.myclick);
-                    mp.start();
+
                     v.startAnimation(alpha);
 
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -53,8 +51,6 @@ public class SettingsView extends Fragment {
             personalDataVar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp = MediaPlayer.create(getContext(), R.raw.myclick);
-                    mp.start();
                     v.startAnimation(alpha);
 
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
