@@ -84,7 +84,7 @@ public class CustomShopAdapter extends BaseAdapter {
         title.setText(shopHelper.getTitle());
         price.setText("Pris " + shopHelper.getPrice() + " SEK");
         try {
-            new URLConvertion().handleBitmapUrl(imageView, shopHelper.getImageURL(), pb);
+            //new URLConvertion().handleBitmapUrl(imageView, shopHelper.getImageURL(), pb);
         } catch (Exception e) {
             Log.e(PublicConstants.TAG, "Error i CSA " + e);
         }

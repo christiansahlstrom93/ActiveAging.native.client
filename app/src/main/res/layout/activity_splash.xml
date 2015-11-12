@@ -17,11 +17,6 @@
         app:accentColor="#1FC411"
         app:hasIcons="true"/>
 
-    <!--
-    TODO
-    Ändra färger för tabhosten
-    -->
-
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:background="@android:color/white"

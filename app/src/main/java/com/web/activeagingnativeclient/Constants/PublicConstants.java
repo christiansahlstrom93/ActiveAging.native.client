@@ -10,4 +10,5 @@ public class PublicConstants {
     public static final String ADAPTER_TYPE_SHOP = "shop-type";
     public static final String ADAPTER_TYPE_CONF = "conf-type";
     public static final float DEFAULT_PRICE = -9307;
+    public static final int ORDER_FAIL = -1;
 }

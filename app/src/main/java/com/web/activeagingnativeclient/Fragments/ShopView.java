@@ -34,7 +34,7 @@ public class ShopView extends Fragment {
     private List<String> description = new ArrayList<>();
     private List<String> imageUrl = new ArrayList<>();
     private List<Float> price = new ArrayList<>();
-    private List<Float> itemID = new ArrayList<>();
+    private List<Integer> itemID = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class ShopView extends Fragment {
         if (listView == null) {
             listView = (ListView) getV().findViewById(R.id.listView);
         }
-        Log.e(PublicConstants.TAG,"SetListShop");
         shopListInitializor.addItem(title, desc, price, imageUrl, getActivity(), listView);
     }
 
@@ -125,11 +124,11 @@ public class ShopView extends Fragment {
         this.price = price;
     }
 
-    public List<Float> getItemID() {
+    public List<Integer> getItemID() {
         return itemID;
     }
 
-    public void setItemID(List<Float> itemID) {
+    public void setItemID(List<Integer> itemID) {
         this.itemID = itemID;
     }
 }

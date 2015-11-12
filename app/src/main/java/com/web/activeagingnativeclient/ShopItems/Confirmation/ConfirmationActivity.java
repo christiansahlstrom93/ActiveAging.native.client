@@ -1,11 +1,11 @@
 package com.web.activeagingnativeclient.ShopItems.Confirmation;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,12 +13,22 @@ import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.web.activeagingnativeclient.CommonHelpers.TaskHelper;
+import com.web.activeagingnativeclient.Constants.PublicConstants;
 import com.web.activeagingnativeclient.R;
+import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
 import com.web.activeagingnativeclient.ShopItems.ShopHandler.ShopBagHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Christian on 2015-10-22.
+ */
 public class ConfirmationActivity extends AppCompatActivity {
 
     Animation alpha, flash;
+    private List<Integer> orderID = new ArrayList<>();
     private android.support.v7.app.ActionBar bar;
 
     @Override
@@ -44,7 +54,12 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     public void processOrder(View v) {
         v.startAnimation(alpha);
-        ShopBagHelper.getInstance().clearLists();
+        int id = SharedPreferenceHandler.getPublicLibValue(this, "account_id", 6);
+        Log.e(PublicConstants.TAG, "ID " + id);
+
+        TaskHelper taskHelper = new TaskHelper();
+        taskHelper.createOrder(id, getOrderID(), ShopBagHelper.getInstance().getItemID(),this);
+
     }
 
 
@@ -100,5 +115,13 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     public void setBar(android.support.v7.app.ActionBar bar) {
         this.bar = bar;
+    }
+
+    public List<Integer> getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(List<Integer> orderID) {
+        this.orderID = orderID;
     }
 }
