@@ -27,7 +27,6 @@ public class UsernamePasswordView extends Fragment {
 
     Button saveData;
 
-    MediaPlayer mp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,8 +47,6 @@ public class UsernamePasswordView extends Fragment {
                 @Override
                 public void onClick(View v) {
                     v.startAnimation(alpha);
-                    mp = MediaPlayer.create(getContext(), R.raw.click);
-                    mp.start();
                     Toast.makeText(getContext(), "Spara!", Toast.LENGTH_LONG).show();
                 }
             });

@@ -32,7 +32,7 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
 
     private static Splash instance;
 
-    public ViewPager pager;
+    public static ViewPager pager;
 
     private ResourcesHelper resourcesHelper = new ResourcesHelper();
     private TextView actionBarText;
