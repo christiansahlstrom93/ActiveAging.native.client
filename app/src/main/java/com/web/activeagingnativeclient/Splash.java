@@ -38,7 +38,7 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
     private TextView actionBarText;
     private TextView chartCounter;
     public ImageView shopChart;
-    private ProgressBar progressBar;
+    public static ProgressBar progressBar;
     private PagerAdapter pagerAdapter;
     MaterialTabHost tabHost;
 
@@ -105,7 +105,6 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
             getInstance().setActionBarText(getActionBarText());
             getActionBarText().setText(SharedPreferenceHandler.getPublicLibValue(this, "username"));
             progressBar = (ProgressBar) v.findViewById(R.id.tabProgressBar);
-            progressBar.setVisibility(View.INVISIBLE); //TODO ta bort
             shopChart = (ImageView) v.findViewById(R.id.imageView);
             shopChart.setOnClickListener(new View.OnClickListener() {
                 @Override

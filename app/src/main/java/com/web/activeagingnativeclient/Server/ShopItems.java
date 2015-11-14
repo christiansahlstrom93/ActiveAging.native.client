@@ -1,5 +1,9 @@
 package com.web.activeagingnativeclient.Server;
 
+import android.util.Log;
+
+import com.web.activeagingnativeclient.Constants.PublicConstants;
+
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -37,7 +41,7 @@ public class ShopItems extends ServerHandler {
             for (int j = 0; j < getItemID().size(); j ++) {
                 String url = "https://activeageing.se/resources/manufacturers/" + manufacturerID.get(i)+"/products/"+getItemID().get(j)+
                         "/media ";
-                setProductImageURL(getResponseBody(url),getImageUrl());
+                setProductImageURL(getResponseBody(url), getImageUrl());
             }
         }
     }

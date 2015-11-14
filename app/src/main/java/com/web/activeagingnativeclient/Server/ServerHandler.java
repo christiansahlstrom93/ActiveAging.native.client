@@ -68,17 +68,33 @@ public abstract class ServerHandler {
         }
     }
 
-    public void setProductImageURL(String jsonData, List<String> imageURL) throws JSONException {
+    public void setProductCredentialsFromHistory(String response, List<String> title, List<String> desc, List<Float> price, List<Integer> itemID, List<Integer> manufacturerID) throws JSONException {
+
+        JSONArray jsonArr = new JSONArray(response);
+        JSONObject jsonObject = new JSONObject(String.valueOf(jsonArr.get(0)));
+        JSONObject jsonObject1;
+        jsonObject = jsonObject.getJSONObject("product");
+
+        desc.add(jsonObject.getString("description"));
+        itemID.add(jsonObject.getInt("id"));
+        title.add(jsonObject.getString("name"));
+        price.add((float) jsonObject.getDouble("price"));
+
+        jsonObject1 = jsonObject.getJSONObject("manufacturer");
+        manufacturerID.add(jsonObject1.getInt("id"));
+    }
+
+    public boolean setProductImageURL(String jsonData, List<String> imageURL) throws JSONException {
         JSONArray jsonArr = new JSONArray(jsonData);
         JSONObject jsonObject;
         if (jsonArr.length() > 0) {
             jsonObject = new JSONObject(String.valueOf(jsonArr.get(0)));
             if (jsonObject != null) {
                 imageURL.add(jsonObject.getString("url"));
+                return true;
             }
-        } else {
-            imageURL.add("");
         }
+        return false;
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -164,10 +180,4 @@ public abstract class ServerHandler {
 
         return returnValue;
     }
-
-    public int orderId(String json) throws JSONException {
-        JSONObject jsonObject = new JSONObject(json);
-        return jsonObject.getInt("id");
-    }
-
 }
