@@ -1,5 +1,6 @@
 package com.web.activeagingnativeclient.ShopItems.Confirmation;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     Animation alpha, flash;
     private List<Integer> orderID = new ArrayList<>();
     private android.support.v7.app.ActionBar bar;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,13 @@ public class ConfirmationActivity extends AppCompatActivity {
     }
 
     public void processOrder(View v) {
+        progressDialog = new ProgressDialog(ConfirmationActivity.this);
+        progressDialog.setMessage("Din beställning behandlas");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         v.startAnimation(alpha);
-        int id = SharedPreferenceHandler.getPublicLibValue(this, "account_id", 6);
-        Log.e(PublicConstants.TAG, "ID " + id);
+
+        int id = SharedPreferenceHandler.getPublicLibValue(this,PublicConstants.ACCOUNT_KEY, 17);
 
         TaskHelper taskHelper = new TaskHelper();
         taskHelper.createOrder(id, getOrderID(), ShopBagHelper.getInstance().getItemID(),this);

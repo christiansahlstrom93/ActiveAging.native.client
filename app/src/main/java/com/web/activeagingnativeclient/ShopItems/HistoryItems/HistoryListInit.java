@@ -1,4 +1,4 @@
-package com.web.activeagingnativeclient.ShopItems;
+package com.web.activeagingnativeclient.ShopItems.HistoryItems;
 
 import android.app.Activity;
 import android.view.View;
@@ -8,17 +8,18 @@ import android.widget.Toast;
 
 import com.web.activeagingnativeclient.Adapters.CustomShopAdapter;
 import com.web.activeagingnativeclient.Constants.PublicConstants;
-import com.web.activeagingnativeclient.Fragments.ShopView;
+import com.web.activeagingnativeclient.Fragments.HistoryView;
 import com.web.activeagingnativeclient.ShopItems.ShopHandler.ShopBagHelper;
+import com.web.activeagingnativeclient.ShopItems.ShopHelper;
 import com.web.activeagingnativeclient.Splash;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Christian on 2015-10-02.
+ * Created by Christian on 2015-11-13.
  */
-public class ShopListInitializor {
+public class HistoryListInit {
 
     private CustomShopAdapter customShopAdapter;
     private List<ShopHelper> shopHelperList = new ArrayList<>();
@@ -39,7 +40,7 @@ public class ShopListInitializor {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    ShopView inst = ShopView.getInstance();
+                    HistoryView inst = HistoryView.getInstance();
                     clickHandler(inst.getItemID().get(position), inst.getPrice().get(position),
                             inst.getImageUrl().get(position),inst.getTitle().get(position));
                 } catch (Exception e) {
@@ -50,8 +51,7 @@ public class ShopListInitializor {
     }
 
     private void clickHandler(float itemID, float price, String imageUrl, String title) {
-        ShopBagHelper.getInstance().addItems(itemID,price,imageUrl,title);
-        Toast.makeText(activity, "ITEM ID " + itemID + " title " + title, Toast.LENGTH_SHORT).show();
+        ShopBagHelper.getInstance().addItems(itemID, price, imageUrl, title);
         if (ShopBagHelper.getInstance().getItemID().size() >= 1) {
             Splash.getInstance().getChartCounter().setVisibility(View.VISIBLE);
             Splash.getInstance().getChartCounter().setText(""+ShopBagHelper.getInstance().getItemID().size());
@@ -59,4 +59,5 @@ public class ShopListInitializor {
             Splash.getInstance().getChartCounter().setVisibility(View.INVISIBLE);
         }
     }
+
 }

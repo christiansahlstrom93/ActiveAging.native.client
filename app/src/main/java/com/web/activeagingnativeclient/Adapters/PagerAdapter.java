@@ -32,7 +32,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         try {
-            //TODO här ska fyra olika fragments in
             switch (position) {
                 case 0:
                     return new ProfileView();
@@ -40,7 +39,8 @@ public class PagerAdapter extends FragmentPagerAdapter {
                     ShopView.getInstance().startTask();
                     return ShopView.getInstance();
                 case 2:
-                    return new HistoryView();
+                    HistoryView.getInstance().startTask(c);
+                    return HistoryView.getInstance();
                 case 3:
                     return new SettingsView();
 

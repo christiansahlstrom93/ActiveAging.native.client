@@ -1,6 +1,7 @@
 package com.web.activeagingnativeclient.Fragments;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.web.activeagingnativeclient.AppController;
 import com.web.activeagingnativeclient.CommonHelpers.TaskHelper;
 import com.web.activeagingnativeclient.Constants.PublicConstants;
 import com.web.activeagingnativeclient.R;
@@ -46,7 +51,7 @@ public class ShopView extends Fragment {
         return getV();
     }
 
-    public void setListShop(String title, String desc, float price, String imageUrl) {
+    public void setListShop(final String title, final String desc, final float price, final String imageUrl, final int itemId) {
 
         if (shopListInitializor == null) {
             shopListInitializor = new ShopListInitializor();
@@ -55,7 +60,32 @@ public class ShopView extends Fragment {
         if (listView == null) {
             listView = (ListView) getV().findViewById(R.id.listView);
         }
-        shopListInitializor.addItem(title, desc, price, imageUrl, getActivity(), listView);
+
+        ImageRequest request = new ImageRequest(imageUrl,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(final Bitmap bitmap) {
+                        try {
+                            getItemID().add(itemId);
+                            getTitle().add(title);
+                            getDescription().add(desc);
+                            getImageUrl().add(imageUrl);
+                            getPrice().add(price);
+                            shopListInitializor.addItem(title, desc, price, imageUrl, getActivity(), listView);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+        AppController.getInstance().addToRequestQueue(request);
     }
 
     public void startTask() {

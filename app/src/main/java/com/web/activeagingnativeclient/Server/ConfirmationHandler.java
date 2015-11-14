@@ -5,6 +5,7 @@ import android.util.Log;
 import com.web.activeagingnativeclient.Constants.PublicConstants;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -42,4 +43,8 @@ public class ConfirmationHandler extends ServerHandler {
         return PublicConstants.ORDER_FAIL;
     }
 
+    private int orderId(String json) throws JSONException {
+        JSONObject jsonObject = new JSONObject(json);
+        return jsonObject.getInt("id");
+    }
 }
