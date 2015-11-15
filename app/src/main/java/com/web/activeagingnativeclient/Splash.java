@@ -49,8 +49,9 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (SharedPreferenceHandler.getPublicLibValue(this, "username") == null) {
+        if (SharedPreferenceHandler.getPublicLibValue(this, PublicConstants.USER) == null) {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
 
         instance = getInstance();
@@ -104,8 +105,9 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
             setActionBarText((TextView) v.findViewById(R.id.title));
             getInstance().setChartCounter((TextView) v.findViewById(R.id.chartCounter));
             getInstance().setActionBarText(getActionBarText());
-            getActionBarText().setText(SharedPreferenceHandler.getPublicLibValue(this, "username"));
+            getActionBarText().setText(SharedPreferenceHandler.getPublicLibValue(this, PublicConstants.USER));
             progressBar = (ProgressBar) v.findViewById(R.id.tabProgressBar);
+            progressBar.setVisibility(View.INVISIBLE);
             shopChart = (ImageView) v.findViewById(R.id.imageView);
             shopChart.setOnClickListener(new View.OnClickListener() {
                 @Override

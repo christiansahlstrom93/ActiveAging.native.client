@@ -12,4 +12,7 @@ public class PublicConstants {
     public static final String ACCOUNT_KEY ="account_id";
     public static final float DEFAULT_PRICE = -9307;
     public static final int ORDER_FAIL = -1;
+    public static final String USER = "user";
+    public static final String PASS = "pass";
+
 }
