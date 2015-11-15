@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.web.activeagingnativeclient.Adapters.PagerAdapter;
 import com.web.activeagingnativeclient.Constants.PublicConstants;
+import com.web.activeagingnativeclient.Login.LoginActivity;
 import com.web.activeagingnativeclient.Resources.ResourcesHelper;
 import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
 import com.web.activeagingnativeclient.ShopItems.Confirmation.ConfirmationActivity;
@@ -49,7 +50,7 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
         setContentView(R.layout.activity_splash);
 
         if (SharedPreferenceHandler.getPublicLibValue(this, "username") == null) {
-            //TODO starta LOG IN sidan
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
         instance = getInstance();

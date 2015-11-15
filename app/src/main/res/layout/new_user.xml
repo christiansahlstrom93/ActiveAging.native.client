@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Användarnamn"
+            android:text="@string/Användarnamn"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/userName"
+            android:textColor="#080808"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Förnamn"
+            android:text="@string/Förnamn"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/firstName"
+            android:textColor="#080808"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Efternamn"
+            android:text="@string/Efternamn"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="#080808"
+            android:textAlignment="center" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/lastName"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Email"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:text="@string/Email" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:id="@+id/email_address"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Lösenord"
+            android:text="@string/Lösenord"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:id="@+id/pass"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:maxLines="1"
+            android:singleLine="true" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Telefon"
+            android:text="@string/Telefon"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/phoneNumber"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:textColor="#080808"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Gatunamn"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:text="@string/Gatunamn"
+            android:textAlignment="center"
+            android:textColor="#080808" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/streetName"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Gatunummer"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:text="@string/Gatunummer"
+            android:textAlignment="center"
+            android:textColor="#080808" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/streetNumber"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Stad"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:textColor="#080808"
+            android:text="@string/Stad"
+            android:textAlignment="center" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/city"
+            android:textColor="#080808"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="168dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Postnummer"
+            android:text="@string/Postnummer"
+            android:textAlignment="center"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+        <EditText
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:id="@+id/zip_code"
+            android:textColor="#080808"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_register_user"
+        android:color="#15A145"
+        android:id="@+id/register_user"
+        android:layout_marginTop="2dp"
+        android:textStyle="normal"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:textColor="#080808"
+        android:layout_marginBottom="2dp" />
+
+</LinearLayout>
+

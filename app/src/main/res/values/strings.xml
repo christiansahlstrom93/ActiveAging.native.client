@@ -6,13 +6,24 @@
     <string name="title_activity_confirmation">ConfirmationActivity</string>
 
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="Förnamn">Förnamn</string>
+    <string name="Användarnamn">Användarnamn</string>
+    <string name="Efternamn">Efternamn</string>
+    <string name="Telefon">Telefon</string>
+    <string name="Gatunamn">Gatunamn</string>
+    <string name="Gatunummer">Gatunummer</string>
+    <string name="Postnummer">Postnummer</string>
+    <string name="Stad">Stad</string>
+    <string name="Email">Email</string>
+    <string name="Lösenord">Lösenord</string>
+    <string name="prompt_password">Lösenord</string>
+    <string name="action_register_user">Registrera mig</string>
+    <string name="action_sign_in">Logga in eller registrera dig</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Denna mailaddresen är ogiltlig</string>
+    <string name="error_invalid_password">Lösenordet måste vara längre än fyra tecken</string>
+    <string name="error_incorrect_password">Detta lösenordet är inte korrekt</string>
+    <string name="error_field_required">Denna rutan måste fyllas in</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
     completions."</string>
 

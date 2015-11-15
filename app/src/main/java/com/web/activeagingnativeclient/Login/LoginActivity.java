@@ -4,6 +4,7 @@ package com.web.activeagingnativeclient.Login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,11 +20,15 @@ import android.widget.TextView;
 
 import com.web.activeagingnativeclient.R;
 
+import org.json.JSONException;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "ellismuya@dummy.com:hello", "bar@example.com:world"
     };
+
+    //Authenticate user by id
 
     private UserLoginTask mAuthTask = null;
 
@@ -96,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
         else if(TextUtils.isEmpty(password)){
-            mPasswordView.setError("This field is required");
+            mPasswordView.setError("Du måste skriva in ditt lösenord");
             focusView = mPasswordView;
             cancel = true;
         }
@@ -194,6 +199,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             // TODO: register the new account here.
+            startActivity(new Intent(getApplicationContext(), RegisterUser.class));
+
             return true;
         }
 
