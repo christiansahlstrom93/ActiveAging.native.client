@@ -14,7 +14,7 @@
         <Button
             android:id="@+id/usernamepassword"
             android:layout_weight="1"
-            android:text="Användaruppgifter"
+            android:text="Lösenord"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:layout_width="fill_parent"

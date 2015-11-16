@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,6 @@ public class SettingsView extends Fragment {
     Button personalDataVar;
 
     private View v;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +47,6 @@ public class SettingsView extends Fragment {
                 }
             });
 
-
             personalDataVar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -61,6 +60,11 @@ public class SettingsView extends Fragment {
         }
         return getV();
     }
+
+
+
+
+
 
     public View getV() {
         return v;
