@@ -1,127 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/personaldataID"
-    >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
-        android:layout_margin="20dp"
-        android:textSize="25dp"
-        android:textColor="#000000"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignRight="@+id/streetNameEditText"
+        android:layout_alignEnd="@+id/streetNameEditText">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Ändra kontaktuppgifter"
+                android:textColor="#000000"
+                android:layout_marginBottom="20dp"
+                android:textSize="17dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Personuppgifter"
-        android:id="@+id/textView"
-        android:textStyle="italic"/>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
 
-    <TextView
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buttonshape"
+            android:text="Spara ändringar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp">
+        </Button>
 
-        android:textSize="15dp"
-        android:textColor="#000000"
-        android:layout_gravity="left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Namn"
-        android:id="@+id/textView2" />
+    </LinearLayout>
 
     <EditText
+        android:id="@+id/streetNameEditText"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputName"
-        android:layout_gravity="left"
-        />
-
-    <TextView
         android:textSize="15dp"
-        android:textColor="#000000"
-        android:layout_gravity="left"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Efternamn"
-        android:id="@+id/textView3"
-        />
-
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputLastname"
-        android:layout_gravity="left" />
-
-    <TextView
-        android:textSize="15dp"
-        android:textColor="#000000"
-        android:layout_gravity="left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adress"
-        android:id="@+id/textView4"
-        />
-
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:ems="10"
         android:inputType="textPostalAddress"
-        android:ems="10"
-        android:id="@+id/inputAddress"
-        android:layout_gravity="left" />
+        android:layout_below="@+id/lastNameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Gatunamn" />
 
-    <TextView
+    <EditText
+        android:id="@+id/lastNameEditText"
+        android:layout_width="300dp"
         android:textSize="15dp"
-        android:textColor="#000000"
-        android:layout_gravity="left"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Telefonnummer"
-        android:id="@+id/textView5"
-        />
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="Efternamn"
+        android:layout_below="@+id/firstNameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/firstNameEditText"
+        android:layout_width="300dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Förnamn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp" />
+
+    <EditText
+        android:id="@+id/streetNumberEditText"
+        android:layout_width="300dp"
+        android:textSize="15dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="Husnummer"
+        android:layout_below="@+id/streetNameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:inputType="phone"
+        android:inputType="number"
         android:ems="10"
-        android:id="@+id/inputPhone"
-        android:layout_gravity="left" />
-
-    <TextView
         android:textSize="15dp"
-        android:textColor="#000000"
-        android:layout_gravity="left"
-        android:layout_width="wrap_content"
+        android:hint="Postnummer"
+        android:id="@+id/zipCodeEditText"
+        android:layout_below="@+id/streetNumberEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="E-post"
-        android:id="@+id/textView6"
-        />
+        android:inputType="textPersonName"
+        android:hint="Stad"
+        android:textSize="15dp"
+        android:ems="10"
+        android:id="@+id/cityEditText"
+        android:layout_below="@+id/zipCodeEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/inputEmail"
-        android:layout_gravity="left" />
+        android:hint="E-post"
+        android:textSize="15dp"
+        android:id="@+id/emailEditText"
+        android:layout_below="@+id/cityEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
-        android:orientation="vertical" >
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/phoneEditText"
+        android:hint="Telefonnummer"
+        android:textSize="15dp"
+        android:layout_below="@+id/emailEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:text="Spara ändringar"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
-        </Button>
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
