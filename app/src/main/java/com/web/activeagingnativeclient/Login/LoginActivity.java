@@ -15,7 +15,6 @@ import com.web.activeagingnativeclient.R;
 import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
 import com.web.activeagingnativeclient.Splash;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
         user = (EditText) findViewById(R.id.editText);
         pass = (EditText) findViewById(R.id.editText2);

@@ -14,14 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="Logga in eller registrera dig"
+        android:text="@string/action_sign_in"
         android:id="@+id/textView7"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Användarnamn eller email"
+        android:hint="@string/Användarnamn_eller_Email"
         android:id="@+id/editText" />
 
     <EditText
@@ -29,21 +31,24 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:hint="Lösenord"
+        android:hint="@string/Lösenord"
         android:id="@+id/editText2" />
 
     <Button
         android:layout_width="326dp"
         android:layout_height="wrap_content"
-        android:text="Logga in"
+        android:background="@drawable/buttonshape"
+        android:textColor="#FFFFFF"
+        android:text="@string/Logga_in"
         android:onClick="login"
-        android:id="@+id/button2"
-        android:layout_gravity="right" />
+        android:id="@+id/button2" />
 
     <Button
         android:layout_width="326dp"
         android:layout_height="wrap_content"
-        android:text="Registrera"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/buttonshape"
+        android:text="@string/Registrera"
         android:onClick="register"
         android:id="@+id/button3" />
 </LinearLayout>

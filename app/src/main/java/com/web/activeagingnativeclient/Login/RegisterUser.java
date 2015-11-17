@@ -50,6 +50,7 @@ public class RegisterUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_user);
+        getSupportActionBar().hide();
         userName = (EditText) findViewById(R.id.userName);
         firstName = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
