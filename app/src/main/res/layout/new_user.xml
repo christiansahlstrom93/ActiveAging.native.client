@@ -274,13 +274,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/action_register_user"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/buttonshape"
         android:color="#15A145"
         android:id="@+id/register_user"
         android:layout_marginTop="2dp"
         android:textStyle="normal"
         android:textSize="15sp"
         android:textAlignment="center"
-        android:textColor="#080808"
         android:layout_marginBottom="2dp" />
 
 </LinearLayout>

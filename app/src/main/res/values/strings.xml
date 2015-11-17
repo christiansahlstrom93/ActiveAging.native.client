@@ -8,6 +8,7 @@
     <string name="prompt_email">Email</string>
     <string name="Förnamn">Förnamn</string>
     <string name="Användarnamn">Användarnamn</string>
+    <string name="Användarnamn_eller_Email">Användarnamn eller Email</string>
     <string name="Efternamn">Efternamn</string>
     <string name="Telefon">Telefon</string>
     <string name="Gatunamn">Gatunamn</string>
@@ -18,6 +19,8 @@
     <string name="Lösenord">Lösenord</string>
     <string name="prompt_password">Lösenord</string>
     <string name="action_register_user">Registrera mig</string>
+    <string name="Logga_in">Logga in</string>
+    <string name="Registrera">Registrera</string>
     <string name="action_sign_in">Logga in eller registrera dig</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">Denna mailaddresen är ogiltlig</string>
