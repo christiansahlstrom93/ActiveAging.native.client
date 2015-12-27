@@ -36,7 +36,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 case 0:
                     return new ProfileView();
                 case 1:
-                    ShopView.getInstance().startTask();
+                    ShopView.getInstance().startTask(c);
                     return ShopView.getInstance();
                 case 2:
                     HistoryView.getInstance().startTask(c);

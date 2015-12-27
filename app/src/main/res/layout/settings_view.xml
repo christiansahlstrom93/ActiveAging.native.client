@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/settingsID"
-    android:background="#FFFFFF">
+    android:layout_gravity="bottom"
+    android:background="@drawable/hdpi">
 
-
-    <LinearLayout
-        android:id="@+id/LinearLayout02"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/usernamepassword"
+        android:layout_weight="1"
+        android:text="Lösenord"
+        android:textColor="#FFFFFF"
         android:layout_width="fill_parent"
-        android:layout_alignParentBottom="true">
+        android:layout_height="70dp"
+        android:background="@drawable/buttonshape"
+        android:layout_gravity="bottom">
+    </Button>
 
-        <Button
-            android:id="@+id/usernamepassword"
-            android:layout_weight="1"
-            android:text="Lösenord"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
-        </Button>
+    <Button
+        android:id="@+id/personaldata"
+        android:layout_weight="1"
+        android:text="Personuppgifter"
+        android:textColor="#FFFFFF"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/buttonshape"
+        android:layout_gravity="bottom">
+    </Button>
 
-        <Button
-            android:id="@+id/personaldata"
-            android:layout_weight="1"
-            android:text="Personuppgifter"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
-        </Button>
-    </LinearLayout>
-
-
-
-
-</RelativeLayout>
+</LinearLayout>

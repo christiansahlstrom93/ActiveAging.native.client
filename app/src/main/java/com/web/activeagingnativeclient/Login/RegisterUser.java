@@ -84,7 +84,9 @@ public class RegisterUser extends AppCompatActivity {
 
 
                             resp = addCustomer(restUrl, u, f, l, ea,
-                                    passe, ph, st, stn, cit);
+                                    passe,  st,ph, stn, cit);
+
+                            Log.e("loggtag" , "ReSRP " + resp);
 
 
                         } catch (Exception ex) {
@@ -109,8 +111,11 @@ public class RegisterUser extends AppCompatActivity {
                                 SharedPreferenceHandler.setValueToGlobalLib(RegisterUser.this, PublicConstants.ACCOUNT_KEY, jsonObject.getInt("id"));
                                 SharedPreferenceHandler.setValueToGlobalLib(RegisterUser.this, PublicConstants.USER, userName.getText().toString());
                                 SharedPreferenceHandler.setValueToGlobalLib(RegisterUser.this, PublicConstants.PASS, pass.getText().toString());
+                                SharedPreferenceHandler.setValueToGlobalLib(RegisterUser.this, PublicConstants.CITY, city.getText().toString());
+                                SharedPreferenceHandler.setValueToGlobalLib(RegisterUser.this, PublicConstants.ZIP, streetNumber.getText().toString());
+                                SharedPreferenceHandler.setValueToGlobalLib(RegisterUser.this, PublicConstants.STREET, streetName.getText().toString());
 
-                                  startActivity(new Intent(RegisterUser.this, Splash.class));
+                                startActivity(new Intent(RegisterUser.this, Splash.class));
                                   finish();
                             }
                         } catch (Exception exc) {
@@ -128,22 +133,23 @@ public class RegisterUser extends AppCompatActivity {
     public String addCustomer(String myUrl, String username, String fName, String lName, String
             email, String password,
                               String sName, String pNum, String sNum, String city) {
-        String params = "{\n"
-                + "  \"userName\": \"" + username + "\",\n"
-                + "  \"firstName\": \"" + fName + "\",\n"
-                + "  \"lastName\": \"" + lName + "\",\n"
-                + "  \"email\": \"" + email + "\",\n"
-                + "  \"password\": \"" + password + "\",\n"
-                + "  \"phoneNumber\": \"" + pNum + "\",\n"
-                + "  \"streetName\": \"" + sName + "\",\n"
-                + "  \"streetNumber\": \"" + sNum + "\",\n"
-                + "  \"city\": \"" + city + "\",\n"
-                + "  \"zipCodeId\": 0\n"
-                + "}";
+
 
         String output = "", returnValue = "";
 
         try {
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("userName",username);
+            jsonObject.put("firstName",fName);
+            jsonObject.put("lastName",lName);
+            jsonObject.put("email",email);
+            jsonObject.put("password",password);
+            jsonObject.put("phoneNumber",pNum);
+            jsonObject.put("streetName",sName);
+            jsonObject.put("streetNumber",sNum);
+            jsonObject.put("city",city);
+            jsonObject.put("zipCodeId",0);
 
             URL url = new URL(myUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -152,7 +158,7 @@ public class RegisterUser extends AppCompatActivity {
             conn.setRequestProperty("Content-Type", "application/json");
 
             OutputStream os = conn.getOutputStream();
-            os.write(params.getBytes());
+            os.write(jsonObject.toString().getBytes());
             os.flush();
 
             Log.e(PublicConstants.TAG, "Code " + conn.getResponseCode());
@@ -172,11 +178,7 @@ public class RegisterUser extends AppCompatActivity {
 
             conn.disconnect();
 
-        } catch (MalformedURLException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
 

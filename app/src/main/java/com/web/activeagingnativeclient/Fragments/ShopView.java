@@ -1,6 +1,7 @@
 package com.web.activeagingnativeclient.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -66,6 +67,8 @@ public class ShopView extends Fragment {
                     @Override
                     public void onResponse(final Bitmap bitmap) {
                         try {
+                            Log.e("loggtag","REsponsE");
+
                             getItemID().add(itemId);
                             getTitle().add(title);
                             getDescription().add(desc);
@@ -88,10 +91,10 @@ public class ShopView extends Fragment {
         AppController.getInstance().addToRequestQueue(request);
     }
 
-    public void startTask() {
+    public void startTask(Context c) {
         if (taskHelper == null) {
             taskHelper = new TaskHelper();
-            taskHelper.shopTask();
+            taskHelper.shopTask(c);
         }
     }
 

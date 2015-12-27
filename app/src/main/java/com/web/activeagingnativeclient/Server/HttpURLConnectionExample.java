@@ -5,6 +5,7 @@ package com.web.activeagingnativeclient.Server;
  */
 
 import android.content.Context;
+import android.util.Log;
 
 import com.web.activeagingnativeclient.Constants.PublicConstants;
 import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
@@ -52,8 +53,7 @@ public class HttpURLConnectionExample {
     String inEmail;
     String inPhone;
 
-    public void sendGet(String incomingID) throws Exception {
-        this.incomingID = incomingID;
+    public void sendGet(int incomingID) throws Exception {
         String url = "https://activeageing.se/resources/accounts/" + incomingID;
 
         URL obj = new URL(url);
@@ -96,13 +96,11 @@ public class HttpURLConnectionExample {
         //System.out.println(response.toString());
     }
 
-    public void sendPostPassword(String inOldPassword, String inNewPassword, String userID, Context c) throws Exception {
+    public void sendPostPassword(String inOldPassword, String inNewPassword, int userID, Context c) throws Exception {
         this.inOldPassword = inOldPassword;
         this.inNewPassword = inNewPassword;
-        this.userID = userID;
 
-        //String url = "https://activeageing.se/resources/accounts/" + userID + "/password";
-        String url = "https://activeageing.se/resources/accounts/1/password";
+        String url = "https://activeageing.se/resources/accounts/" + userID + "/password";
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
@@ -139,7 +137,7 @@ public class HttpURLConnectionExample {
         System.out.println(response.toString());
     }
 
-    public void sendPostUserData(String inFirstName, String inLastName, String inStreetName, String inStreetNumber, String inZipCode, String inCity, String inEmail, String inPhone) throws Exception {
+    public void sendPostUserData(String inFirstName, String inLastName, String inStreetName, String inStreetNumber, String inZipCode, String inCity, String inEmail, String inPhone,int userID) throws Exception {
         this.inFirstName = inFirstName;
         this.inLastName = inLastName;
         this.inStreetName = inStreetName;
@@ -149,8 +147,7 @@ public class HttpURLConnectionExample {
         this.inEmail = inEmail;
         this.inPhone = inPhone;
 
-        //String url = "https://activeageing.se/resources/accounts/" + userID + "/password";
-        String url = "https://activeageing.se/resources/accounts/1";
+        String url = "https://activeageing.se/resources/accounts/" + userID;
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
@@ -168,7 +165,7 @@ public class HttpURLConnectionExample {
         jsonParam.put("streetName", inStreetName);
         jsonParam.put("streetNumber", inStreetNumber);
         jsonParam.put("city", inCity);
-        jsonParam.put("zipCodeId", inZipCode);
+        jsonParam.put("zipCodeId", Integer.parseInt(inZipCode));
 
         String str = jsonParam.toString();
         byte[] data = str.getBytes("UTF-8");
@@ -179,6 +176,7 @@ public class HttpURLConnectionExample {
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'PUT' request to URL : " + url);
         System.out.println("Response Code : " + responseCode);
+        Log.e(PublicConstants.TAG,"ReS " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;

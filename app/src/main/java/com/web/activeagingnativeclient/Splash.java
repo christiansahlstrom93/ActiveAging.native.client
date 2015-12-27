@@ -1,5 +1,6 @@
 package com.web.activeagingnativeclient;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -116,6 +120,14 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
                 }
             });
 
+            ImageView health = (ImageView) v.findViewById(R.id.imageView2);
+            health.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    createBuilder();
+                }
+            });
+
             if (ShopBagHelper.getInstance().getItemID().size() < 1) {
                 getInstance().getChartCounter().setVisibility(View.INVISIBLE);
             }
@@ -172,5 +184,42 @@ public class Splash extends AppCompatActivity implements MaterialTabListener {
 
     public void setChartCounter(TextView chartCounter) {
         this.chartCounter = chartCounter;
+    }
+
+    private void createBuilder() {
+
+        final String[] items = {"Nötter","Fisk","Curry","Laktos","Svamp","Mjölk"};
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.allergic_builder, null);
+        LinearLayout linearLayout = (LinearLayout) dialogView.findViewById(R.id.builderview);
+
+        for (int i = 0; i < items.length; i++) {
+            final int pos = i;
+            final CheckBox check = new CheckBox(this);
+            check.setText(items[i]);
+            check.setChecked(SharedPreferenceHandler.getPublicLibValue(Splash.this,items[pos],PublicConstants.PUBLIC_ALERGIC_KEY) != null);
+            check.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (check.isChecked()) {
+                        SharedPreferenceHandler.setValueToGlobalLib(Splash.this, items[pos], items[pos], PublicConstants.PUBLIC_ALERGIC_KEY);
+                        SharedPreferenceHandler.getAllAllergies(Splash.this);
+                    } else {
+                        SharedPreferenceHandler.removeValue(Splash.this, items[pos]);
+                    }
+
+                }
+            });
+
+            linearLayout.addView(check);
+        }
+
+        dialogBuilder.setView(dialogView);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
     }
 }

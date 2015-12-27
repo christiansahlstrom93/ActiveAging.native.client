@@ -29,11 +29,16 @@ public class ConfirmationHandler extends ServerHandler {
 
     public int addItemToOrder(int orderID, int userID, float productID) throws IOException, JSONException {
         int prod = Math.round(productID);
-        Log.e(PublicConstants.TAG, "Add item " + prod + " " + orderID);
+        Log.e(PublicConstants.TAG, "Add item " + prod + " " + orderID + "  " + userID);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        String params = "{\"delivered\":\""+dateFormat.format(date)+"\",\"productId\": "+prod+"}";
+        String params = "{\n" +
+                "  \"delivered\": \"2015-12-11T15:19:14.844Z\",\n" +
+                "  \"productId\": "+(int)productID+"\n" +
+                "}";
+
+        Log.e(PublicConstants.TAG, "PARAMS "+ params);
 
         String response = addOrder("https://activeageing.se/resources/accounts/" + userID + "/orders/" + orderID + "/items",params);
         if (response != null) {

@@ -72,7 +72,6 @@ public class HistoryView extends Fragment {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                     }
 
                 }, 0, 0, null,
@@ -81,7 +80,6 @@ public class HistoryView extends Fragment {
 
                     }
                 });
-
         AppController.getInstance().addToRequestQueue(request);
     }
 

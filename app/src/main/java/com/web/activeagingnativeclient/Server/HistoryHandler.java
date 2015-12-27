@@ -39,19 +39,8 @@ public class HistoryHandler extends ServerHandler {
             String response = getResponseBody("https://activeageing.se/resources/accounts/" + id + "/orders/" + orderID.get(i) + "/items");
 
             if (response.length() > 20) {
-                setProductCredentialsFromHistory(response, getTitle(), getDescription(), getPrice(), getItemID(), manufacturerID);
+                setProductCredentialsFromHistory(response, getTitle(), getDescription(), getPrice(), getItemID(), manufacturerID,getImageUrl(),c);
             }
-        }
-    }
-
-    public void getImage() throws JSONException {
-
-        for (int i = 0; i < manufacturerID.size(); i++) {
-
-            String url = "https://activeageing.se/resources/manufacturers/" + manufacturerID.get(i) + "/products/" + getItemID().get(i) +
-                    "/media ";
-            setProductImageURL(getResponseBody(url), getImageUrl());
-
         }
     }
 

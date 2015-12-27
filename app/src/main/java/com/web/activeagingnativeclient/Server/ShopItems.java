@@ -1,5 +1,6 @@
 package com.web.activeagingnativeclient.Server;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.web.activeagingnativeclient.Constants.PublicConstants;
@@ -21,29 +22,10 @@ public class ShopItems extends ServerHandler {
     private List<Float> price = new ArrayList<>();
     private List<Integer> itemID = new ArrayList<>();
 
-    private List<Integer> manufacturerID = new ArrayList<>();
-
-    public void getManufactures() throws JSONException {
-        setProductId(getResponseBody("https://activeageing.se/resources/manufacturers"),manufacturerID);
-    }
-
-    public void getProducts() throws JSONException {
-        for (int i = 0; i < manufacturerID.size(); i++) {
-            String url = "https://activeageing.se/resources/manufacturers/"+manufacturerID.get(i)+"/products";
-            setProductCredentials(getResponseBody(url),getTitle(),getDescription(),getPrice(),getItemID());
-        }
-    }
-
-
-    public void getImage() throws JSONException {
-
-        for (int i = 0; i < manufacturerID.size(); i++) {
-            for (int j = 0; j < getItemID().size(); j ++) {
-                String url = "https://activeageing.se/resources/manufacturers/" + manufacturerID.get(i)+"/products/"+getItemID().get(j)+
-                        "/media ";
-                setProductImageURL(getResponseBody(url), getImageUrl());
-            }
-        }
+    public void getProducts(Context c) throws JSONException {
+            String url;
+            url = "https://activeageing.se/resources/products";
+            setProductCredentials(getResponseBody(url),getTitle(),getDescription(),getPrice(),getItemID(),getImageUrl(),c);
     }
 
     public List<String> getTitle() {

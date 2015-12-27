@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class TaskHelper {
 
-    public void shopTask() {
+    public void shopTask(final Context c) {
         final ShopItems shopItems = new ShopItems();
         if (Splash.progressBar != null) {
             Splash.progressBar.setVisibility(View.VISIBLE);
@@ -38,12 +38,8 @@ public class TaskHelper {
             protected Void doInBackground(Void... params) {
 
                 try {
-                    shopItems.getManufactures();
-                    shopItems.getProducts();
-                    shopItems.getImage();
-
+                    shopItems.getProducts(c);
                 } catch (Exception ex) {
-                    Log.e(PublicConstants.TAG, "Error i task " + ex);
                 }
                 return null;
             }
@@ -54,6 +50,9 @@ public class TaskHelper {
                 if (Splash.progressBar != null) {
                     Splash.progressBar.setVisibility(View.INVISIBLE);
                 }
+                Log.e("loggtag", shopItems.getItemID().size() + "  " + shopItems.getTitle().size()
+                        + " " + shopItems.getDescription().size() + " " + shopItems.getPrice().size()
+                        + " " + shopItems.getImageUrl().size() + "  " + shopItems.getItemID().size());
                 for (int i = 0; i < shopItems.getItemID().size(); i++) {
                     ShopView.getInstance().setListShop(shopItems.getTitle().get(i),
                             shopItems.getDescription().get(i), shopItems.getPrice().get(i),
@@ -69,7 +68,7 @@ public class TaskHelper {
 
             @Override
             protected Void doInBackground(Void... params) {
-                Log.e(PublicConstants.TAG, "CREATE ORDER");
+                Log.e(PublicConstants.TAG, "CREATE ORDER " +id);
                 for (int i = 0; i < items.size(); i++) {
                     try {
                         int order;
@@ -149,7 +148,7 @@ public class TaskHelper {
                 try {
                     historyHandler.getOrders(c);
                     historyHandler.getOrderItems(c);
-                    historyHandler.getImage();
+                    //historyHandler.getImage();
 
                 } catch (Exception ex) {
                     Log.e(PublicConstants.TAG, "Error i historytask " + ex);
@@ -164,8 +163,6 @@ public class TaskHelper {
                     Splash.progressBar.setVisibility(View.INVISIBLE);
                 }
                 for (int i = 0; i < historyHandler.getItemID().size(); i++) {
-                    Log.e(PublicConstants.TAG,"Data i loop " + historyHandler.getTitle().get(i) + " " + historyHandler.getImageUrl().get(i));
-
                     HistoryView.getInstance().setListShop(historyHandler.getTitle().get(i),
                             historyHandler.getDescription().get(i), historyHandler.getPrice().get(i),
                             historyHandler.getImageUrl().get(i), historyHandler.getItemID().get(i));

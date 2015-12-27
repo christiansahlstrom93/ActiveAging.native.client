@@ -51,7 +51,6 @@ public class ShopListInitializor {
 
     private void clickHandler(float itemID, float price, String imageUrl, String title) {
         ShopBagHelper.getInstance().addItems(itemID,price,imageUrl,title);
-        Toast.makeText(activity, "ITEM ID " + itemID + " title " + title, Toast.LENGTH_SHORT).show();
         if (ShopBagHelper.getInstance().getItemID().size() >= 1) {
             Splash.getInstance().getChartCounter().setVisibility(View.VISIBLE);
             Splash.getInstance().getChartCounter().setText(""+ShopBagHelper.getInstance().getItemID().size());

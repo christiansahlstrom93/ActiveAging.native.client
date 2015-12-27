@@ -1,9 +1,11 @@
 package com.web.activeagingnativeclient.Server;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
+import com.web.activeagingnativeclient.CommonHelpers.Filter;
 import com.web.activeagingnativeclient.Constants.PublicConstants;
 
 import org.json.JSONArray;
@@ -56,46 +58,65 @@ public abstract class ServerHandler {
     }
 
     public void setProductCredentials(String jsonData, List<String> title, List<String> desc, List<Float> price,
-                                      List<Integer> itemID) throws JSONException {
+                                      List<Integer> itemID, List<String> imageUrl, Context c) throws JSONException {
         JSONArray jsonArr = new JSONArray(jsonData);
         JSONObject jsonObject;
         for (int i = 0; i < jsonArr.length(); i++) {
+
             jsonObject = new JSONObject(String.valueOf(jsonArr.get(i)));
-            itemID.add(jsonObject.getInt("id"));
-            desc.add(jsonObject.getString("description"));
-            title.add(jsonObject.getString("name"));
-            price.add((float) jsonObject.getDouble("price"));
-        }
-    }
 
-    public void setProductCredentialsFromHistory(String response, List<String> title, List<String> desc, List<Float> price, List<Integer> itemID, List<Integer> manufacturerID) throws JSONException {
+            if (new Filter().hasAllergies(c, jsonObject.getString("tags"))) {
 
-        JSONArray jsonArr = new JSONArray(response);
-        JSONObject jsonObject = new JSONObject(String.valueOf(jsonArr.get(0)));
-        JSONObject jsonObject1;
-        jsonObject = jsonObject.getJSONObject("product");
+            } else {
+                itemID.add(jsonObject.getInt("id"));
+                desc.add(jsonObject.getString("description"));
+                title.add(jsonObject.getString("name"));
+                price.add((float) jsonObject.getDouble("price"));
 
-        desc.add(jsonObject.getString("description"));
-        itemID.add(jsonObject.getInt("id"));
-        title.add(jsonObject.getString("name"));
-        price.add((float) jsonObject.getDouble("price"));
+                String imageURL = jsonObject.getString("imageUrl");
 
-        jsonObject1 = jsonObject.getJSONObject("manufacturer");
-        manufacturerID.add(jsonObject1.getInt("id"));
-    }
+                if (exists(imageURL)) {
+                    imageUrl.add(imageURL);
+                } else {
+                    imageUrl.add("http://cdn.mysitoo.com/10549/res/ingen_bild.jpg?v=1424935071");
+                }
 
-    public boolean setProductImageURL(String jsonData, List<String> imageURL) throws JSONException {
-        JSONArray jsonArr = new JSONArray(jsonData);
-        JSONObject jsonObject;
-        if (jsonArr.length() > 0) {
-            jsonObject = new JSONObject(String.valueOf(jsonArr.get(0)));
-            if (jsonObject != null) {
-                imageURL.add(jsonObject.getString("url"));
-                return true;
             }
         }
-        return false;
     }
+
+    public void setProductCredentialsFromHistory(String response, List<String> title, List<String> desc, List<Float> price, List<Integer> itemID, List<Integer> manufacturerID, List<String> imageUrl,Context c) throws JSONException {
+        try {
+            JSONArray jsonArr = new JSONArray(response);
+            JSONObject jsonObject = new JSONObject(String.valueOf(jsonArr.get(0)));
+            JSONObject jsonObject1;
+            jsonObject = jsonObject.getJSONObject("productsId");
+
+            int id = jsonObject.getInt("id");
+
+            if (!itemID.contains(id) && !new Filter().hasAllergies(c, jsonObject.getString("tags"))) {
+
+                desc.add(jsonObject.getString("description"));
+                itemID.add(id);
+                title.add(jsonObject.getString("name"));
+                price.add((float) jsonObject.getDouble("price"));
+
+                String imageURL = jsonObject.getString("imageUrl");
+
+                if (exists(imageURL)) {
+                    imageUrl.add(imageURL);
+                } else {
+                    imageUrl.add("http://cdn.mysitoo.com/10549/res/ingen_bild.jpg?v=1424935071");
+                }
+
+                jsonObject1 = jsonObject.getJSONObject("manufacturer");
+                manufacturerID.add(jsonObject1.getInt("id"));
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public String addOrder(String murl) throws IOException {
@@ -176,8 +197,22 @@ public abstract class ServerHandler {
             e.printStackTrace();
 
         }
-
-
         return returnValue;
+    }
+
+    public static boolean exists(String URLName) {
+        try {
+            HttpURLConnection.setFollowRedirects(false);
+            // note : you may also need
+            //        HttpURLConnection.setInstanceFollowRedirects(false)
+            HttpURLConnection con =
+                    (HttpURLConnection) new URL(URLName).openConnection();
+            con.setRequestMethod("HEAD");
+            Log.e("loggtag", con.getResponseCode() + "  " + con.getContent());
+            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

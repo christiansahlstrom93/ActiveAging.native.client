@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
         private String name, json = "";
         private final String mPassword;
+        int id;
 
         UserLoginTask(String name, String password) {
             this.name = name;
@@ -75,32 +77,53 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            json = auth("https://activeageing.se/resources/authentication", json);
+            try {
+                json = auth("https://activeageing.se/resources/authentication", json);
+                JSONObject jsonObject = new JSONObject(json);
+                id = jsonObject.getInt("id");
 
+                String acc = getResponseBody("https://activeageing.se/resources/accounts/"+id);
+                jsonObject = new JSONObject(acc);
+
+                SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this, PublicConstants.CITY, jsonObject.getString("city"));
+                SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this, PublicConstants.ZIP,jsonObject.getString("streetNumber"));
+                SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this, PublicConstants.STREET, jsonObject.getString("streetName"));
+
+
+                Log.e("loggtag", "CITY" +jsonObject.getString("streetNumber") + "  " + jsonObject.getString("streetName"));
+            } catch (Exception e) {
+                Log.e("loggtag",e+"");
+            }
             return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            if (json != null) {
+
 
 
                 try {
 
+
                     JSONObject jsonObject = new JSONObject(json);
+                    Log.e("loggtag", jsonObject + "  JSON");
 
-                    SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this,PublicConstants.ACCOUNT_KEY,jsonObject.getInt("id"));
-                    SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this,PublicConstants.USER,name);
-                    SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this,PublicConstants.PASS,mPassword);
+                    if (jsonObject.getInt("id") > 0) {
+                        SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this, PublicConstants.ACCOUNT_KEY, id);
+                        SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this, PublicConstants.USER, name);
+                        SharedPreferenceHandler.setValueToGlobalLib(LoginActivity.this, PublicConstants.PASS, mPassword);
 
-                    startActivity(new Intent(LoginActivity.this, Splash.class));
-                    finish();
+                        startActivity(new Intent(LoginActivity.this, Splash.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this,"Fel lösenord eller användarnamn",Toast.LENGTH_LONG).show();
+                    }
 
                 } catch (JSONException e) {
                 }
 
 
-            }
+
         }
 
         public String auth(String myUrl, String params) {
@@ -151,5 +174,25 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public String getResponseBody(String murl) {
+        try {
+
+            URL url = new URL(murl);
+            HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((InputStream) httpCon.getContent()));
+
+            String readLine;
+            String responseBody = "";
+            while (((readLine = br.readLine()) != null)) {
+                responseBody += "\n" + readLine;
+            }
+
+            return responseBody;
+        } catch (Exception e) {
+            Log.e(PublicConstants.TAG, "Error i getResponse " + e);
+        }
+        return null;
+    }
 
 }

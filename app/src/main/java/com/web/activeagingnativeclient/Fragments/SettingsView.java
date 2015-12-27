@@ -1,7 +1,5 @@
 package com.web.activeagingnativeclient.Fragments;
 
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,10 +11,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import com.web.activeagingnativeclient.Constants.PublicConstants;
 import com.web.activeagingnativeclient.R;
+import com.web.activeagingnativeclient.SharedPreferenceHelper.SharedPreferenceHandler;
 
 /**
- * Created by Christian on 2015-10-02.
+ * Created by Admir on 2015-10-02.
  */
 public class SettingsView extends Fragment {
     Button usernamepasswordVar;
@@ -35,9 +35,15 @@ public class SettingsView extends Fragment {
 
             final Animation alpha = AnimationUtils.loadAnimation(getContext(), R.anim.alphastyle);
 
+            final String soundValue = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.SOUND);
+
             usernamepasswordVar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(soundValue.equals("PÅ")) {
+                        MediaPlayer saveSound = MediaPlayer.create(getContext(), R.raw.losenord);
+                        saveSound.start();
+                    }
 
                     v.startAnimation(alpha);
 
@@ -51,6 +57,11 @@ public class SettingsView extends Fragment {
             personalDataVar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(soundValue.equals("PÅ")) {
+                        MediaPlayer saveSound = MediaPlayer.create(getContext(), R.raw.personuppgifter);
+                        saveSound.start();
+                    }
+
                     v.startAnimation(alpha);
 
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();

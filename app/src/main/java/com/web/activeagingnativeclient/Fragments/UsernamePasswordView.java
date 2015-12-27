@@ -1,10 +1,13 @@
 
 package com.web.activeagingnativeclient.Fragments;
 
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +33,9 @@ public class UsernamePasswordView extends Fragment {
 
     Button saveData;
 
-    String fromUserID;
+    int fromUserID;
     String fromUserOldPassword;
+    String fromUserUsername;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class UsernamePasswordView extends Fragment {
 
             saveData = (Button) v.findViewById(R.id.saveButton);
 
-            username = (EditText) v.findViewById(R.id.firstNameEditText);
+            username = (EditText) v.findViewById(R.id.usernameEditText);
             username.setGravity(Gravity.LEFT);
 
             password = (EditText) v.findViewById(R.id.passwordInput);
@@ -50,64 +54,99 @@ public class UsernamePasswordView extends Fragment {
 
             saveData.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
+                    final String soundValue = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.SOUND);
 
-                    if (!username.getText().toString().equals("") && !password.getText().toString().equals("")) {
-                        try {
-                            HttpURLConnectionExample http = new HttpURLConnectionExample();
+                    if(soundValue.equals("PÅ")) {
+                        MediaPlayer saveSound = MediaPlayer.create(getContext(), R.raw.spara_andringar);
+                        saveSound.start();
+                    }
 
-                            fromUserID = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.ACCOUNT_KEY); //ID
-                            fromUserOldPassword = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.PASS); //OldPassword
+                    final HttpURLConnectionExample http = new HttpURLConnectionExample();
 
-                            String userID = fromUserID;
-                            String oldPassword = fromUserOldPassword;
-                            String newPassword = password.getText().toString();
+                    fromUserID = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.ACCOUNT_KEY, 0); //ID
+                    fromUserOldPassword = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.PASS); //OldPassword
+                    fromUserUsername = SharedPreferenceHandler.getPublicLibValue(getActivity(), PublicConstants.USER);
 
-                            //GET information from account by using an ID.
-                            http.sendGet(userID);
+                    final String oldPassword = fromUserOldPassword;
+                    final String newPassword = password.getText().toString();
+                    final String inUsername = username.getText().toString();
 
-                            //Put every income information in a variable.
-                            String type = http.typeMethod();
-                            String city = http.cityMethod();
-                            String created = http.createdMethod();
-                            String email = http.emailMethod();
-                            String firstName = http.firstNameMethod();
-                            String id = http.idMethod();
-                            String lastName = http.lastNameMethod();
-                            String phoneNumber = http.phoneNumberMethod();
-                            String role = http.roleMethod();
-                            String streetName = http.streetNameMethod();
-                            String streetNumber = http.streetNumberMethod();
-                            String updated = http.updatedMethod();
-                            String userName = http.usernameMethod();
+                    final boolean hasUppercase = !newPassword.equals(newPassword.toLowerCase());
+                    final boolean hasLowercase = !newPassword.equals(newPassword.toUpperCase());
+                    final boolean isAtLeast8 = newPassword.length() >= 8;
+                    final boolean hasSpecial = !newPassword.matches("[A-Za-z0-9 ]*");
+                    final boolean noConditions = !(newPassword.contains("AND") || newPassword.contains("NOT"));
 
-                            System.out.println("UserName: " + userName + "Updated: " + updated + "Role: " + role + "PhoneNumber: " + phoneNumber + "ID: " + id + "Type: " + type + "City: " + city + "Created: " + created + "FirstName: " + firstName + " LastName: " + lastName + " StreetName: " + streetName + " StreetNumber: " + streetNumber +" City: " + city + " Email: " + email);
+                    new AsyncTask<Void, Void, Void>() {
 
-                            System.out.println("Skriva ut input: " + "Namn: " + username + " Lösenord: " + password);
+                        @Override
+                        protected Void doInBackground(Void... params) {
 
-                            /* Hårdkod!
-                            String myOldPassword = "emil";
-                            String myNewPassword = "norsken";
+                            try {
+                                if (inUsername.equals(fromUserUsername) && hasLowercase && hasUppercase && isAtLeast8 && hasSpecial && noConditions) {
 
-                            http.sendPostPassword(myOldPassword, myNewPassword, userID);*/
+                                    getActivity().runOnUiThread(new Runnable() {
 
-                            http.sendPostPassword(oldPassword, newPassword, userID, getActivity());
+                                        public void run() {
+                                            Toast.makeText(getContext(), "Lösenord ändrat!", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                                    http.sendPostPassword(oldPassword, newPassword, fromUserID, getActivity());
+                                } else {
+                                    getActivity().runOnUiThread(new Runnable() {
+
+                                        public void run() {
+                                            Toast.makeText(getContext(), "Du har angivit ett felaktigt användarnamn eller ett ogiltigt lösenord. Lösenordet måste innehålla alla tecken, gemener och versaler samt minst åtta tecken ", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                            return null;
                         }
 
-                        v.startAnimation(alpha);
-                        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.settingsID, new SettingsView(), "NewFragmentTag");
-                        ft.commit();
-                    } else {
-                        Toast.makeText(getContext(), "Det finns tomma fält. Se till att alla fält är ifyllda.", Toast.LENGTH_LONG).show();
-                    }
+                        @Override
+                        protected void onPostExecute(Void aVoid) {
+                            super.onPostExecute(aVoid);
+
+                            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.replace(R.id.settingsID, new SettingsView(), "NewFragmentTag");
+                            ft.commit();
+                        }
+                    }.execute();
+
+
                 }
             });
         }
         return getV();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.settingsID, new SettingsView(), "NewFragmentTag");
+                    ft.commit();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public View getV() {

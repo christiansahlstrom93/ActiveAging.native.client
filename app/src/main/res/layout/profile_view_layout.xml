@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/hdpi"
+
     android:id="@+id/profileID">
 
     <LinearLayout
@@ -16,11 +18,9 @@
             android:layout_weight="1"
             android:text="Startsida"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
             android:layout_width="fill_parent"
             android:layout_height="70dp"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
+            android:background="@drawable/buttonshape">
         </Button>
 
         <Button
@@ -28,11 +28,9 @@
             android:layout_weight="1"
             android:text="Beställa"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
             android:layout_width="fill_parent"
             android:layout_height="70dp"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
+            android:background="@drawable/buttonshape">
         </Button>
 
     </LinearLayout>
@@ -48,11 +46,9 @@
             android:layout_weight="1"
             android:text="Historik"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
             android:layout_width="fill_parent"
             android:layout_height="70dp"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
+            android:background="@drawable/buttonshape">
         </Button>
 
         <Button
@@ -60,11 +56,9 @@
             android:layout_weight="1"
             android:text="Inställningar"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
             android:layout_width="fill_parent"
             android:layout_height="70dp"
-            android:background="@drawable/buttonshape"
-            android:textAllCaps="false">
+            android:background="@drawable/buttonshape">
         </Button>
 
     </LinearLayout>

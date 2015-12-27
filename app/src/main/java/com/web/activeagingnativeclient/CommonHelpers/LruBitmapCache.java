@@ -3,9 +3,6 @@ package com.web.activeagingnativeclient.CommonHelpers;
 /**
  * Created by Christian on 2015-11-13.
  */
-/**
- * Created by Christian on 2015-05-31.
- */
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
@@ -17,7 +14,6 @@ public class LruBitmapCache extends LruCache<String, Bitmap> implements
     public static int getDefaultLruCacheSize() {
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         final int cacheSize = maxMemory / 8;
-
         return cacheSize;
     }
 
